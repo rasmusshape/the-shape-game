@@ -44,9 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 13137499
     locked: 0
+  - name: Obstacles
+    uniqueID: 4249229217
+    locked: 0
   - name: Player
     uniqueID: 2292506935
-    locked: 0
-  - name: Rocks
-    uniqueID: 4249229217
     locked: 0
