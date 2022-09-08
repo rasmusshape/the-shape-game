@@ -4,6 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - TrashCan
+  - BeerBooth
+  - Shaper
+  - TrashDump
+  - BurgerBooth
   - Obstacle
   layers:
   - Default
