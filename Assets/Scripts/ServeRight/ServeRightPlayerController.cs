@@ -11,23 +11,6 @@ public class ServeRightPlayerController : MonoBehaviour
     [SerializeField] float verticalTiltOffset = 0.5f;
     [SerializeField] MovementType movementType = MovementType.Absolute;
 
-    // Absolute
-    [Header("Absolute Movement Settings")]
-    [SerializeField] float absDeadzoneBuffer = 1f;
-    [SerializeField] float moveSpeed = 20f;
-
-    // Relative
-    [Header("Relative Movement Settings")]
-    [SerializeField] float relDeadzoneBuffer = 0f;
-    [SerializeField] float movementSensX = 20;
-    [SerializeField] float movementSensY = 40;
-    [SerializeField] float jitterBuffer = 1f;
-
-    [SerializeField] bool useReturnSpeedMultiplier = true;
-    [SerializeField] float returnSpeedMultiplierX = 2;
-    [SerializeField] float returnSpeedMultiplierY = 2;
-    [SerializeField] float returnToCenterOffset = 0.1f;
-
     // Snapping
     [Header("Snapping Movement Settings")]
     [SerializeField] float xMovementDeadzone = 0.25f;
@@ -50,15 +33,31 @@ public class ServeRightPlayerController : MonoBehaviour
     Vector2 trashCanBot_CenterCoord;
     Vector2 aisleFour_CenterCoord;
     Vector2 botCenterCoord;
-
     Vector2 defaultCoords = new Vector2(20,20);
 
-    private enum xCoordType {
-        Booth,
-        Aisle,
-        Trashcan
-    }
+    // Absolute
+    [Header("Absolute Movement Settings")]
+    [SerializeField] float absDeadzoneBuffer = 1f;
+    [SerializeField] float moveSpeed = 20f;
 
+    // Relative
+    [Header("Relative Movement Settings")]
+    [SerializeField] float relDeadzoneBuffer = 0f;
+    [SerializeField] float movementSensX = 20;
+    [SerializeField] float movementSensY = 40;
+    [SerializeField] float jitterBuffer = 1f;
+
+    [SerializeField] bool useReturnSpeedMultiplier = true;
+    [SerializeField] float returnSpeedMultiplierX = 2;
+    [SerializeField] float returnSpeedMultiplierY = 2;
+    [SerializeField] float returnToCenterOffset = 0.1f;
+
+    const string trashCanTag = "TrashCan";
+    const string beerBoothTag = "BeerBooth";
+    const string burgerBoothTag = "BurgerBooth";
+    const string trashDumpTag = "TrashDump";
+    const string shaperTag = "Shaper";
+     
     private void Start() 
     {
         body = GetComponent<Rigidbody2D>();
@@ -98,26 +97,26 @@ public class ServeRightPlayerController : MonoBehaviour
         transform.localPosition = topCenterCoord;
     }
 
-    private void FixedUpdate() 
+    // Note: In order to activate absolute movement, need to use fixedupdate. 
+    // Also need to clamp position to stay within borders
+    private void Update() 
     {
-        UpdateWithSnappingMovement();
-        /*
         switch (movementType) 
         {
             case MovementType.Relative:
                 UpdateWithRelativeMovement();
                 break;
-            case MovementType.Snapping:
-                UpdateWithSnappingMovement();
-                break;
-            default:
+            case MovementType.Absolute:
                 UpdateWithAbsoluteMovement();
                 break;
+            default:
+                UpdateWithSnappingMovement();
+                break;
         }
-        */
     }
 
     
+    /*
     protected void OnGUI()
     {
         GUI.skin.label.fontSize = Screen.width / 20;
@@ -129,6 +128,27 @@ public class ServeRightPlayerController : MonoBehaviour
         GUILayout.Label("Transform X: " + transform.localPosition.x);
         GUILayout.Label("Transform Y: " + transform.localPosition.y);
     }
+    */
+
+    void OnTriggerEnter2D(Collider2D other) {
+        switch (other.gameObject.tag) {
+            case trashCanTag:
+                Debug.Log("TrashCan HIT");
+                break;
+            case trashDumpTag:
+                Debug.Log("TrashDump HIT");
+                break;
+            case beerBoothTag:
+                Debug.Log("BeerBooth HIT");
+                break;
+            case burgerBoothTag:
+                Debug.Log("BurgerBooth HIT");
+                break;
+            case shaperTag:
+                Debug.Log("Shaper HIT");
+                break;
+        }
+    }
     
 
     void UpdateWithSnappingMovement()
@@ -137,10 +157,10 @@ public class ServeRightPlayerController : MonoBehaviour
         var inputX = Input.acceleration.x;
         var inputY = Input.acceleration.y + verticalTiltOffset;
 
-        var currentPosition = transform.localPosition;
+        Vector2 currentPosition = transform.localPosition;
 
         // Update target positions based on tilt of phone.
-        var targetPosition = new Vector2(-10, -10);
+        Vector2 targetPosition = defaultCoords;
     
         // Moving up.
         if (inputY > yMovementDeadzone) {
@@ -149,10 +169,10 @@ public class ServeRightPlayerController : MonoBehaviour
             if (currentPosition.x != 0) return;
 
             // If we're at the top, we cannot move further up -> do nothing.
-            if (currentPosition.y == topCenterCoord.y) return;
+            if (currentPosition.y >= topCenterCoord.y) return;
 
-    
-            var positionIndex = centerCoordsList.FindIndex(coord => coord.y == currentPosition.y);
+            var positionIndex = centerCoordsList.FindIndex(coord => Mathf.Approximately(coord.y, currentPosition.y));
+            Debug.Log("Position Index: " + positionIndex);
 
             targetPosition = new Vector2(currentPosition.x, centerCoordsList[positionIndex - 1].y);
 
@@ -165,12 +185,18 @@ public class ServeRightPlayerController : MonoBehaviour
             // if x != 0 we're in a side position and cannot move up -> do nothing.
             if (currentPosition.x != 0) return;
 
-            // If we're at the bottom, we cannot move further down -> do nothing.
-            if (currentPosition.y == botCenterCoord.y) return;
             
-            var positionIndex = centerCoordsList.FindIndex(coord => coord.y == currentPosition.y);
+            // If we're at the bottom, we cannot move further down -> do nothing.
+            if (currentPosition.y <= botCenterCoord.y) return;
+            
+            
+            var positionIndex = centerCoordsList.FindIndex(coord => Mathf.Approximately(coord.y, currentPosition.y));
+            Debug.Log("Current Y: " + currentPosition.y);
+            Debug.Log("BotCoord Y: " + botCenterCoord.y);
+            Debug.Log("Position Index: " + positionIndex);
 
             targetPosition = new Vector2(currentPosition.x, centerCoordsList[positionIndex + 1].y);
+            
 
             UpdatePosition(targetPosition);
         }
@@ -278,12 +304,6 @@ public class ServeRightPlayerController : MonoBehaviour
         body.velocity = new Vector2(dirX, dirY);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Obstacle") {
-            body.velocity = new Vector2(0, 0);
-        }
-    }
-
     void UpdateWithRelativeMovement()
     {
         // Cache phone accelerometer input
@@ -322,5 +342,11 @@ public class ServeRightPlayerController : MonoBehaviour
             transform.localPosition = Vector2.Lerp(transform.localPosition, targetPosition, Time.deltaTime * updateSpeed);
         }
 
+    }
+
+    private enum xCoordType {
+        Booth,
+        Aisle,
+        Trashcan
     }
 }
