@@ -15,7 +15,7 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     #region Public Variables
 
     [Header("Time to spawn a burger")]
-    public float timerInterval = 0.2f; 
+    public float timerInterval = 2f; 
    
     [Header("Maximum burgers spawned")]
     public int maxBurgers = 3;
@@ -87,4 +87,6 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     }
 
     #endregion
+
+    public int CurrentBurgers { get; set; }
 }

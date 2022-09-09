@@ -15,7 +15,7 @@ public class BeerSpawner: Singleton<BeerSpawner>
     #region Public Variables
 
     [Header("Time to spawn a beer")]
-    public float timerInterval = 0.2f; 
+    public float timerInterval = 2f; 
    
     [Header("Maximum beers spawned")]
     public int maxBeers = 3;
@@ -87,4 +87,6 @@ public class BeerSpawner: Singleton<BeerSpawner>
     }
 
     #endregion
+
+    public int CurrentBeers { get; set; }
 }
