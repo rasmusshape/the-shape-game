@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 public class UI_PlayerInventory : MonoBehaviour {
 
-
     GameManager gameManager;
+    SpawnerManager spawnerManager;
 
     [SerializeField] GameObject inventory_UI;
     [SerializeField] GameObject burgerPrefab;
     [SerializeField] GameObject beerPrefab;
     
-
-    private void Start() {
+    void Start() {
         gameManager = GameManager.Instance;
         BeerSpawner.Instance.OnBeerPickedUp += AddBeerToUI;
         BurgerSpawner.Instance.OnBurgerPickedUp += AddBurgerToUI;
+        SpawnerManager.Instance.OnItemDelivered += RemoveItemOfType;
     }
     
     public void AddBeerToUI(bool wasAdded) {
