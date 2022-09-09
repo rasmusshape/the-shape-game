@@ -64,6 +64,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
 
     public event Action<bool> OnBeerBoothHit;
     public event Action<bool> OnBurgerBoothHit;
+    public event Action<int> OnShaperHit;
 
     protected ServeRightPlayerController() { }
      
@@ -156,6 +157,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
                 Debug.Log("BurgerBooth HIT");
                 break;
             case shaperTag:
+                OnShaperHit(other.gameObject.GetComponent<Shaper>().id);
                 Debug.Log("Shaper HIT");
                 break;
         }

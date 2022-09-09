@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class OrderManager : MonoBehaviour {
+public class OrderManager : Singleton<OrderManager> {
     
     int currentMinItemsPrOrder = 1;
     int currentMaxItemsPrOrder = 1;
@@ -10,21 +10,19 @@ public class OrderManager : MonoBehaviour {
 
     List<Item> items;
 
-    GameManager gameManager;
+ protected OrderManager() { }
 
     private void Start() {
-        gameManager = FindObjectOfType<GameManager>();
-
         items = new List<Item> {
             new Item(ItemType.Burger),
             new Item(ItemType.Beer)
         };
     }
 
-    public Order GetOrder() {
+    public Order GetOrder(GameObject shaper) {
         int itemsForOrder = Random.Range(currentMinItemsPrOrder, currentMaxItemsPrOrder);
 
-        Order newOrder = new Order();
+        Order newOrder = shaper.AddComponent(typeof(Order)) as Order;
 
         for (int i = 0; i < itemsForOrder; i++) {
             newOrder.AddItemToOrder(GetRandomItem());
