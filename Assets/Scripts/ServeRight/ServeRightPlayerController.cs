@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class ServeRightPlayerController : MonoBehaviour
+public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
 {
     Rigidbody2D body;
     float dirX;
@@ -57,6 +58,11 @@ public class ServeRightPlayerController : MonoBehaviour
     const string burgerBoothTag = "BurgerBooth";
     const string trashDumpTag = "TrashDump";
     const string shaperTag = "Shaper";
+
+    public event Action<bool> OnBeerBoothHit;
+    public event Action<bool> OnBurgerBoothHit;
+
+    protected ServeRightPlayerController() { }
      
     private void Start() 
     {
@@ -139,9 +145,11 @@ public class ServeRightPlayerController : MonoBehaviour
                 Debug.Log("TrashDump HIT");
                 break;
             case beerBoothTag:
+                OnBeerBoothHit(true);
                 Debug.Log("BeerBooth HIT");
                 break;
             case burgerBoothTag:
+                OnBurgerBoothHit(true);
                 Debug.Log("BurgerBooth HIT");
                 break;
             case shaperTag:
