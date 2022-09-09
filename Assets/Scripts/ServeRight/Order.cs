@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Order {
-    List<Item> orderItems = new List<Item>();
+public class Order: MonoBehaviour {
+    public List<Item> orderItems = new List<Item>();
 
     public void AddItemToOrder(Item item) {
         orderItems.Add(item);
