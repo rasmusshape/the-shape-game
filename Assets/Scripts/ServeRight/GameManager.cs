@@ -1,8 +1,14 @@
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
+
+    private SpawnerManager spawnManager;
+    private BeerSpawner beerSpawner;
+    private BurgerSpawner burgerSpawner;
+    public event Action<bool> OnGameOver;
     
     [SerializeField] TextMeshProUGUI scoreText;
     int playerScore;
@@ -25,6 +31,26 @@ public class GameManager : MonoBehaviour {
         energySlider.maxValue = maxPlayerEnergy;
         currentEnergy = maxPlayerEnergy;
         inventory = new PlayerInventory(3);
+    }
+
+    protected GameManager() { }
+
+    private void Start()
+    {
+        spawnManager = SpawnManager.Instance;
+        burgerSpawner = BurgerSpawner.Instance;
+        beerSpawner = BeerSpawner.Instance;
+
+        spawnManager.OnOrderDelivered += OnOrderDelivered;
+        burgerSpawner.OnBurgerPickedUp += OnBurgerPickedUp;
+        beerSpawner.OnBeerPickedUp += OnBeerPickedUp;
+    }
+
+    void OnApplicationQuit()
+    {
+        spawnManager.OnOrderDelivered -= OnOrderDelivered;
+        burgerSpawner.OnBurgerPickedUp -= OnBurgerPickedUp;
+        beerSpawner.OnBeerPickedUp -= OnBeerPickedUp;
     }
 
     // Called when score is changed.
