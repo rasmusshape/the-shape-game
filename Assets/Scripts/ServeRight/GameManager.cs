@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager> {
 
     private void Start()
     {
-        spawnManager = SpawnManager.Instance;
+        spawnManager = SpawnerManager.Instance;
         burgerSpawner = BurgerSpawner.Instance;
         beerSpawner = BeerSpawner.Instance;
 
@@ -51,6 +51,21 @@ public class GameManager : Singleton<GameManager> {
         spawnManager.OnOrderDelivered -= OnOrderDelivered;
         burgerSpawner.OnBurgerPickedUp -= OnBurgerPickedUp;
         beerSpawner.OnBeerPickedUp -= OnBeerPickedUp;
+    }
+
+    public void OnOrderDelivered(Order orderDelivered)
+    {
+        Debug.Log(orderDelivered);
+    }
+
+    public void OnBurgerPickedUp(bool difff)
+    {
+        Debug.Log(difff);
+    }
+
+    public void OnBeerPickedUp(bool difff)
+    {
+        Debug.Log(difff);
     }
 
     // Called when score is changed.

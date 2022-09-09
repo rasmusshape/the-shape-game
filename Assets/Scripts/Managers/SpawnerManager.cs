@@ -116,6 +116,7 @@ public class SpawnerManager: Singleton<SpawnerManager>
                 shaperPicked.gameObject.SetActive(true);
                 inactiveShapers.Remove(shaperPicked);
                 activeShapers.Add(shaperPicked);
+               // OnOrderPickUp(shaperPicked.order);
              }
              yield return new WaitForSeconds(timerInterval);
          }
