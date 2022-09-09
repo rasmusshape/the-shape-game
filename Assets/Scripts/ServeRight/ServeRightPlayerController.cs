@@ -12,6 +12,9 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
     [SerializeField] float verticalTiltOffset = 0.5f;
     [SerializeField] MovementType movementType = MovementType.Absolute;
 
+    // Event
+    public event Action<bool> OnPlayerMove;
+
     // Snapping
     [Header("Snapping Movement Settings")]
     [SerializeField] float xMovementDeadzone = 0.25f;
@@ -251,10 +254,13 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
                 
         } 
 
-        // Moving left ->
+        // Moving left <-
         if (inputX < -xMovementDeadzone) {
             // If we're in a position to the left -> do nothing
             if (currentPosition.x < 0) return;
+
+            // If were at the bottom, we cant move left.
+            if (currentPosition.Equals(botCenterCoord)) return;
 
             Vector2 dictLookup = defaultCoords;
 
@@ -300,6 +306,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
         if (!transform.localPosition.Equals(targetPosition) && canChangePositions) {
             transform.localPosition = targetPosition;
             StartCoroutine(StartPositionChangeCooldown());
+            OnPlayerMove.Invoke(true);
         }
     }
 

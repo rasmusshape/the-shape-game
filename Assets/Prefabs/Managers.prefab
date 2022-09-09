@@ -64,13 +64,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inactiveShapers:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   activeShapers: []
   timer: 0
   timerInterval: 5
