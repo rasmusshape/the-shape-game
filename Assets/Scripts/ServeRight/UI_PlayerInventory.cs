@@ -12,11 +12,16 @@ public class UI_PlayerInventory : MonoBehaviour {
     
 
     private void Start() {
-        //gameManager = GameManager.Instance;
-        // event add
+        gameManager = GameManager.Instance;
+        BeerSpawner.Instance.OnBeerPickedUp += AddBeerToUI;
+        BurgerSpawner.Instance.OnBurgerPickedUp += AddBurgerToUI;
     }
     
     public void AddBeerToUI(bool wasAdded) {
+        Instantiate(beerPrefab).transform.SetParent(inventory_UI.transform);
+    }
+
+    public void AddBurgerToUI(bool wasAdded) {
         Instantiate(beerPrefab).transform.SetParent(inventory_UI.transform);
     }
 
