@@ -19,7 +19,7 @@ public class PlayerInventory {
 
     // Finds the first item in inventory of given type and removes it.
     public void RemoveItem(Item item) {
-        var itemFound = items.Find(inventoryItem => inventoryItem.ItemType == item.ItemType);
+        Item itemFound = items.Find(inventoryItem => inventoryItem.ItemType == item.ItemType);
 
         if (itemFound == null) return;
 
