@@ -8,6 +8,7 @@ public class PlayerInventory {
 
     public PlayerInventory(int maxInventoryCount) {
         this.maxInventoryCount = maxInventoryCount;
+        items = new List<Item>();
     }
 
     // Add item to list if max inventory has not been hit.
@@ -29,6 +30,10 @@ public class PlayerInventory {
     // Not needed?
     public Item GetItem(Item item) {
         return items.Find(item => item.Equals(item));
+    }
+
+    public void ClearInventory() {
+        items.Clear();
     }
 
     public int CurrentInventoryCount { get; set; }

@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] int currentEnergy;
     [SerializeField] int maxPlayerEnergy;
 
+    [Header("Inventory")]
+    [SerializeField] PlayerInventory inventory;
+
     [Header("Item Sprites")]
     [SerializeField] Sprite burgerSprite;
     [SerializeField] Sprite beerSprite;
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour {
         // Subscribe to relevant events
         energySlider.maxValue = maxPlayerEnergy;
         currentEnergy = maxPlayerEnergy;
+        inventory = new PlayerInventory(3);
     }
 
     // Called when score is changed.
@@ -34,6 +38,12 @@ public class GameManager : MonoBehaviour {
         } else {
             energySlider.value = currentEnergy;
         }
+    }
+
+    public void DropAll() {
+        Debug.Log("Dropped everything!");
+        inventory.ClearInventory();
+        // Update UI
     }
 
     public Sprite GetSprite(ItemType type) {
