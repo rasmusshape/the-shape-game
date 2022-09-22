@@ -24,13 +24,9 @@ public class DifficultyManager: Singleton<DifficultyManager>
 
     #region Public Variables
 
-    [Header("Time passed in game")]
-    [ReadOnly]
-    public float timer = 0f; 
-
     [Header("Difficulty lvl")]
     [ReadOnly]
-    public int difficultyLvl = 0; 
+    public int difficultyLvl = 1; 
 
     [Header("Time needed to change difficulty level")]
     public float timerInterval = 0.3f; 
@@ -47,11 +43,6 @@ public class DifficultyManager: Singleton<DifficultyManager>
     private void Start()
     {   
         StartCoroutine(IncreaseDifficulty());
-    }
-
-    private void FixedUpdate()
-    {
-        timer += Time.deltaTime;
     }
 
     #endregion

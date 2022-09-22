@@ -8,7 +8,8 @@ public class BeerSpawner: Singleton<BeerSpawner>
 {
     #region Public GameObjects
 
-    // [Header("")]
+    [SerializeField] GameObject beerImages;
+    [SerializeField] GameObject beerPrefab;
 
     #endregion
 
@@ -25,6 +26,7 @@ public class BeerSpawner: Singleton<BeerSpawner>
     #region Private Variables
 
     private ServeRightPlayerController playerController;
+    private InventoryManager inventoryManager;
     private int beersCounter;
     
     #endregion
@@ -32,40 +34,61 @@ public class BeerSpawner: Singleton<BeerSpawner>
     #region Events
     public event Action<bool> OnBeerPickedUp;
     
-    public event Action<bool> OnBeerSpawned;
+    //public event Action<bool> OnBeerSpawned;
     IEnumerator SpawnBeer()
     {
         while(true) 
          { 
              if(beersCounter < maxBeers) {
                 beersCounter++;
-                OnBeerSpawned(true);
+                AddBeerToUI();
+                //OnBeerSpawned(true);
              }
              yield return new WaitForSeconds(timerInterval);
          }
     }
 
+    private void AddBeerToUI()
+    {
+        Instantiate(beerPrefab).transform.SetParent(beerImages.transform);
+    }
+
     #endregion
 
     #region Event Listeners
-        
-        #region Beer booth hit event
 
-        /// <summary>
-        /// Listens when a beer gets picked-up
-        /// Decrease beer counter
-        /// Remove sprite Item
-        /// </summary>
-        public void OnBeerBoothHit(bool difff)
-        {
-            Debug.Log(difff);
-            if(beersCounter > 0) {
-                beersCounter --;
-                OnBeerPickedUp(true);
-            }
+    #region Beer booth hit event
+
+    /// <summary>
+    /// Listens when a beer gets picked-up
+    /// Decrease beer counter
+    /// Remove sprite Item
+    /// </summary>
+    public void OnBeerBoothHit(bool isHit)
+    {
+        if(AbleToPickUp()) {
+            beersCounter --;
+            RemoveBeerFromUI();
+            OnBeerPickedUp(true);
         }
+    }
 
-        #endregion
+    private bool AbleToPickUp()
+    {
+        return beersCounter > 0 && inventoryManager.items.Count < inventoryManager.maxInventoryCount;
+    }
+
+    private void RemoveBeerFromUI()
+    {
+        int childCount = beerImages.transform.childCount;
+
+        if (childCount > 0)
+        {
+            Destroy(beerImages.transform.GetChild(childCount - 1).gameObject);
+        }
+    }
+
+    #endregion
 
     #endregion
 
@@ -75,6 +98,7 @@ public class BeerSpawner: Singleton<BeerSpawner>
 
     private void Start()
     {
+        inventoryManager = InventoryManager.Instance;
         playerController = ServeRightPlayerController.Instance;
         playerController.OnBeerBoothHit += OnBeerBoothHit;
 
@@ -88,5 +112,4 @@ public class BeerSpawner: Singleton<BeerSpawner>
 
     #endregion
 
-    public int CurrentBeers { get; set; }
 }

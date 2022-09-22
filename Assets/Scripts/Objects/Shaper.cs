@@ -5,6 +5,5 @@ using UnityEngine;
 public class Shaper : MonoBehaviour
 {
     public int id;
-
     public Order order;
 }

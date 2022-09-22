@@ -8,7 +8,8 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
 {
     #region Public GameObjects
 
-    // [Header("")]
+    [SerializeField] GameObject burgerImages;
+    [SerializeField] GameObject burgerPrefab;
 
     #endregion
 
@@ -25,47 +26,69 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     #region Private Variables
 
     private ServeRightPlayerController playerController;
+    private InventoryManager inventoryManager;
     private int burgersCounter;
-    
+
     #endregion
 
     #region Events
     public event Action<bool> OnBurgerPickedUp;
     
-    public event Action<bool> OnBurgerSpawned;
+    //public event Action<bool> OnBurgerSpawned;    
     IEnumerator SpawnBurger()
     {
         while(true) 
-         { 
-             if(burgersCounter < maxBurgers) {
+         {
+            if (burgersCounter < maxBurgers) {
                 burgersCounter++;
-                OnBurgerSpawned(true);
+                AddBurgerToUI();
+                //OnBurgerSpawned(true);
              }
              yield return new WaitForSeconds(timerInterval);
          }
     }
 
+    private void AddBurgerToUI()
+    {
+        Instantiate(burgerPrefab).transform.SetParent(burgerImages.transform);
+    }
+
     #endregion
 
     #region Event Listeners
-        
-        #region Burger booth hit event
 
-        /// <summary>
-        /// Listens when a burger gets picked-up
-        /// Decrease burger counter
-        /// Remove sprite Item
-        /// </summary>
-        public void OnBurgerBoothHit(bool difff)
-        {
-            Debug.Log(difff);
-            if(burgersCounter > 0) {
-                burgersCounter --;
-                OnBurgerPickedUp(true);
-            }
+    #region Burger booth hit event
+
+    /// <summary>
+    /// Listens when a burger gets picked-up
+    /// Decrease burger counter
+    /// Remove sprite Item
+    /// </summary>
+    public void OnBurgerBoothHit(bool _)
+    {
+        if(AbleToPickUp()) {
+            burgersCounter --;
+            RemoveBurgerFromUI();
+            OnBurgerPickedUp(true);
         }
+    }
 
-        #endregion
+    private bool AbleToPickUp()
+    {
+        return burgersCounter > 0 && inventoryManager.items.Count < inventoryManager.maxInventoryCount;
+    }
+
+    private void RemoveBurgerFromUI()
+    {
+        int childCount = burgerImages.transform.childCount;
+
+        if (childCount > 0)
+        {
+            Destroy(burgerImages.transform.GetChild(childCount - 1).gameObject);
+        }
+    }
+
+    #endregion
 
     #endregion
 
@@ -75,7 +98,9 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
 
     private void Start()
     {
+        inventoryManager = InventoryManager.Instance;
         playerController = ServeRightPlayerController.Instance;
+
         playerController.OnBurgerBoothHit += OnBurgerBoothHit;
 
         StartCoroutine(SpawnBurger());
@@ -88,5 +113,4 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
 
     #endregion
 
-    public int CurrentBurgers { get; set; }
 }

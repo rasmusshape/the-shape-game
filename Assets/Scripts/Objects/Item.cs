@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Item {
-    private ItemType itemType;
+    public ItemType itemType;
 
     public Item(ItemType type) {
         this.itemType = type;
