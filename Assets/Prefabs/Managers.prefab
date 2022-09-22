@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3396863942813714366
+--- !u!1 &1338627293949657561
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3396863942813714362}
-  - component: {fileID: 3396863942813714361}
-  - component: {fileID: 3396863942813714360}
-  - component: {fileID: 3396863942813714367}
+  - component: {fileID: 1338627293949657552}
+  - component: {fileID: 1338627293949657567}
+  - component: {fileID: 1338627293949657553}
+  - component: {fileID: 1338627293949657565}
+  - component: {fileID: 1338627293949657562}
+  - component: {fileID: 1338627293949657563}
+  - component: {fileID: 1338627293949657564}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -19,13 +22,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3396863942813714362
+--- !u!4 &1338627293949657552
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3396863942813714366}
+  m_GameObject: {fileID: 1338627293949657561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,49 +37,107 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3396863942813714361
+--- !u!114 &1338627293949657567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3396863942813714366}
+  m_GameObject: {fileID: 1338627293949657561}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bee5928849e00d94ba8f9f360ea58076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
   difficultyLvl: 0
   timerInterval: 5
   difficultyInterval: 1
---- !u!114 &3396863942813714360
+--- !u!114 &1338627293949657553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3396863942813714366}
+  m_GameObject: {fileID: 1338627293949657561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491b7535dd6c21d4e846efa94d1dc2c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 9df142a651893a942ad1f64e446ba079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inactiveShapers:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   activeShapers: []
-  timer: 0
   timerInterval: 5
   maxShapers: 1
---- !u!114 &3396863942813714367
+  shapersDifficultyInterval: 10
+--- !u!114 &1338627293949657565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3396863942813714366}
+  m_GameObject: {fileID: 1338627293949657561}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 491f3f4ae942d41838394aaac6b3eeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxItemsPrOrder: 3
+  timeToDeliverItem: 5
+  pointsPerItem: 10
+  orderDifficultyInterval: 10
+--- !u!114 &1338627293949657562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338627293949657561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef61f2aad64a342f891063206a387fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory_UI: {fileID: 0}
+  burgerPrefab: {fileID: 6730617031676262690, guid: 4d0f52d489d3b49038e29e0a9fc18aec, type: 3}
+  beerPrefab: {fileID: 3851407120407030355, guid: 636f5f8cc0b43412ca1e0e724bf29827, type: 3}
+  maxInventoryCount: 3
+--- !u!114 &1338627293949657563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338627293949657561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2837541a83e9194d9e9668b97581f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burgerImages: {fileID: 0}
+  burgerPrefab: {fileID: 6730617031676262690, guid: 4d0f52d489d3b49038e29e0a9fc18aec, type: 3}
+  timerInterval: 2
+  maxBurgers: 3
+--- !u!114 &1338627293949657564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338627293949657561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d63560d008b5df46b63ecc835a97628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beerImages: {fileID: 0}
+  beerPrefab: {fileID: 3851407120407030355, guid: 636f5f8cc0b43412ca1e0e724bf29827, type: 3}
+  timerInterval: 2
+  maxBeers: 3
