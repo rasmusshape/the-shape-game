@@ -50,12 +50,18 @@ TagManager:
   - name: Background
     uniqueID: 13137499
     locked: 0
-  - name: Interactables
+  - name: Interactables Back
     uniqueID: 4249229217
     locked: 0
   - name: Obstacles
     uniqueID: 3849579749
     locked: 0
+  - name: Interactables Front
+    uniqueID: 415933179
+    locked: 0
   - name: Player
     uniqueID: 2292506935
+    locked: 0
+  - name: Popups
+    uniqueID: 3596978989
     locked: 0

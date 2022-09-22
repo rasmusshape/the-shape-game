@@ -14,7 +14,7 @@ public class UI_PlayerInventory : MonoBehaviour {
         gameManager = GameManager.Instance;
         BeerSpawner.Instance.OnBeerPickedUp += AddBeerToUI;
         BurgerSpawner.Instance.OnBurgerPickedUp += AddBurgerToUI;
-        SpawnerManager.Instance.OnItemDelivered += RemoveItemOfType;
+        //SpawnerManager.Instance.OnItemDelivered += RemoveItemOfType;
     }
     
     public void AddBeerToUI(bool wasAdded) {
@@ -22,7 +22,7 @@ public class UI_PlayerInventory : MonoBehaviour {
     }
 
     public void AddBurgerToUI(bool wasAdded) {
-        Instantiate(beerPrefab).transform.SetParent(inventory_UI.transform);
+        Instantiate(burgerPrefab).transform.SetParent(inventory_UI.transform);
     }
 
     public void RemoveItemOfType(ItemType itemType) {
@@ -39,5 +39,11 @@ public class UI_PlayerInventory : MonoBehaviour {
             }
         }
     }
+
+    public void ClearInventory() {
+        foreach (Transform child in inventory_UI.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+    }   
 
 }

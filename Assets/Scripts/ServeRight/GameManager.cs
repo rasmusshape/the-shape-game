@@ -30,6 +30,7 @@ public class GameManager : Singleton<GameManager> {
         // Subscribe to relevant events
         energySlider.maxValue = maxPlayerEnergy;
         currentEnergy = maxPlayerEnergy;
+        energySlider.value = currentEnergy;
         inventory = new PlayerInventory(3);
     }
 
@@ -84,7 +85,7 @@ public class GameManager : Singleton<GameManager> {
     public void DropAll() {
         Debug.Log("Dropped everything!");
         inventory.ClearInventory();
-        // Update UI
+        FindObjectOfType<UI_PlayerInventory>().ClearInventory();
     }
 
     public Sprite GetSprite(ItemType type) {
