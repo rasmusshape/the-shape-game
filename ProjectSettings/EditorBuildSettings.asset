@@ -13,6 +13,6 @@ EditorBuildSettings:
     guid: e76878a52e8e3413ea443c461d6c7c19
   - enabled: 1
     path: Assets/Scenes/Serve Right.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    guid: 4107749174955984a8a20f409ab06e5e
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a95bb790b375548aca11e1a6119d1552, type: 2}
