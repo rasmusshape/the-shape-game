@@ -5,6 +5,12 @@ using System;
 
 public class OrderManager : Singleton<OrderManager> {
 
+    #region GameObjects
+
+    [SerializeField] private GameObject orderGOPrefab;
+    
+    #endregion
+    
     #region Public Variables
 
     [Header("Maximum item an order can have")]
@@ -20,6 +26,8 @@ public class OrderManager : Singleton<OrderManager> {
     public int orderDifficultyInterval = 10;
 
     #endregion
+
+    
 
     #region Private variables
 
