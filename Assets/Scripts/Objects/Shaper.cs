@@ -7,4 +7,5 @@ public class Shaper : MonoBehaviour
     public int id;
     public Order order;
     public GameObject orderLine;
+    public SpriteRenderer bubbleSprite;
 }

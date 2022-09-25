@@ -47,22 +47,22 @@ public class Order: MonoBehaviour {
 
     #region Order Spawned Event
 
-    public void OnOrderSpawned(int id)
+    public void OnOrderSpawned(int id, Shaper shaper)
     {
         if (orderId == id)
         {
             timer = orderItems.Count * orderManager.timeToDeliverItem;
-            StartCoroutine(Countdown());
+            StartCoroutine(Countdown(shaper.bubbleSprite));
         }
     }
 
-    private IEnumerator Countdown()
+    private IEnumerator Countdown(SpriteRenderer bubble)
     {
         float totalTime = 0;
         while (totalTime < timer)
         {
-            //countdownImage.fillAmount = totalTime / timer;
             totalTime += Time.deltaTime;
+            bubble.color = UnityEngine.Color.Lerp(orderManager.startBubbleColor, orderManager.expiredBubbleColor, totalTime / timer);
             yield return null;
         }
         orderManager.FireOrderExpiredEvent(orderId);

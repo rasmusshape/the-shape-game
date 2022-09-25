@@ -2607,6 +2607,8 @@ MonoBehaviour:
   playerScore: 0
   currentEnergy: 10
   maxPlayerEnergy: 10
+  energyPointsGained: 1
+  energyPointsReduced: -3
 --- !u!1 &1519129492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,6 +3728,10 @@ PrefabInstance:
       propertyPath: burgerGOPrefab
       value: 
       objectReference: {fileID: 4169104065793701903, guid: 1d887a5b82ae44457ab9720013a9aa7f, type: 3}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: timeToDeliverItem
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
 --- !u!1001 &5731088612345940778
@@ -3741,6 +3747,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753793433446246523, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354981395608037806, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}
+      propertyPath: m_SpriteSortPoint
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4957381896752685443, guid: 4d1b34c347abab943be30850b9737bd8, type: 3}

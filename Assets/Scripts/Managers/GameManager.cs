@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] int playerScore;
     [SerializeField] int currentEnergy;
     [SerializeField] int maxPlayerEnergy;
+    [SerializeField] int energyPointsGained = 1;
+    [SerializeField] int energyPointsReduced = -3;
 
     #endregion
 
@@ -35,14 +37,12 @@ public class GameManager : Singleton<GameManager> {
     {
         //TODO: Reduce energy based on order's points
 
-        if (currentEnergy == maxPlayerEnergy)
-        {
-            energySlider.value = maxPlayerEnergy + 1;
-        }
-        else
-        {
-            energySlider.value = currentEnergy;
-        }
+        if (points > 0 && currentEnergy == maxPlayerEnergy) return;
+
+        currentEnergy += points;
+
+        energySlider.value = currentEnergy;   
+        
 
         //TODO: Check for game over and trigger event OnGameOver(true)
         if (currentEnergy == 0) OnGameOver(true);
@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager> {
     public void OnOrderDelivered(int points)
     {
         AddToScore(points);
+        UpdatePlayerEnergy(energyPointsGained);
     }
 
     // Called when score is changed.
@@ -71,7 +72,7 @@ public class GameManager : Singleton<GameManager> {
 
     public void OnOrderExpired(int points)
     {
-        UpdatePlayerEnergy(points);
+        UpdatePlayerEnergy(energyPointsReduced);
     }
 
     #endregion

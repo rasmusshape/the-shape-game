@@ -42,7 +42,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
 
     public event Action<int> OnOrderDelivered;
     public event Action<ItemType> OnItemDelivered;
-    public event Action<int> OnOrderSpawned;
+    public event Action<int, Shaper> OnOrderSpawned;
 
     IEnumerator SpawnOrder()
     {
@@ -58,7 +58,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
                 activeShapers.Add(shaperPicked);
 
                 shaperPicked.order = orderManager.GenerateRandomOrder(shaperPicked.gameObject);
-                OnOrderSpawned(shaperPicked.order.orderId);
+                OnOrderSpawned(shaperPicked.order.orderId, shaperPicked);
             }
             yield return new WaitForSeconds(timerInterval);
         }

@@ -26,6 +26,12 @@ public class OrderManager : Singleton<OrderManager> {
     [Header("After how many difficulty lvls the number of max orders starts increasing")]
     public int orderDifficultyInterval = 10;
 
+    [Header("The background color of the order bubble the time it is spawned")]
+    public Color startBubbleColor = Color.green;
+
+    [Header("The background color of the order bubble the time it gets expired")]
+    public Color expiredBubbleColor = Color.red;
+
     #endregion
 
     #region Private variables
