@@ -86,6 +86,8 @@ public class GameManager : Singleton<GameManager> {
     void Awake() {
         energySlider.maxValue = maxPlayerEnergy;
         currentEnergy = maxPlayerEnergy;
+        playerScore = 0;
+        scoreText.text = playerScore.ToString();
     }
 
     private void Start()
