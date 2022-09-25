@@ -94,7 +94,7 @@ public class OrderManager : Singleton<OrderManager> {
     #endregion
 
     public Order GenerateRandomOrder(GameObject shaper) {
-        int itemsForOrder = UnityEngine.Random.Range(currentMinItemsPrOrder, currentMaxItemsPrOrder);
+        int itemsForOrder = UnityEngine.Random.Range(currentMinItemsPrOrder, currentMaxItemsPrOrder + 1);
 
         Order newOrder = shaper.AddComponent(typeof(Order)) as Order;
 
