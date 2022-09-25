@@ -7,10 +7,11 @@ public class OrderManager : Singleton<OrderManager> {
 
     #region GameObjects
 
-    [SerializeField] private GameObject orderGOPrefab;
-    
+    [SerializeField] private GameObject burgerGOPrefab;
+    [SerializeField] private GameObject beerGOPrefab;
+
     #endregion
-    
+
     #region Public Variables
 
     [Header("Maximum item an order can have")]
@@ -26,8 +27,6 @@ public class OrderManager : Singleton<OrderManager> {
     public int orderDifficultyInterval = 10;
 
     #endregion
-
-    
 
     #region Private variables
 
@@ -93,7 +92,12 @@ public class OrderManager : Singleton<OrderManager> {
 
         Order newOrder = shaper.AddComponent(typeof(Order)) as Order;
 
-        for (int i = 0; i < itemsForOrder; i++) newOrder.AddItemToOrder(GetRandomItem());
+        for (int i = 0; i < itemsForOrder; i++)
+        {
+            Item itemToAdd = GetRandomItem();
+            Transform orderLine = shaper.GetComponent<Shaper>().orderLine.transform;
+            newOrder.AddItemToOrder(itemToAdd, GetItemPrefab(itemToAdd), orderLine);
+        }
 
         ordersPointer++;
         newOrder.orderId = ordersPointer;
@@ -103,5 +107,13 @@ public class OrderManager : Singleton<OrderManager> {
 
     private Item GetRandomItem() {
         return items[UnityEngine.Random.Range(0, items.Count)];
+    }
+
+    private GameObject GetItemPrefab(Item item)
+    {
+        if (item.itemType == ItemType.Burger)
+            return burgerGOPrefab;
+        else
+            return beerGOPrefab;
     }
 }

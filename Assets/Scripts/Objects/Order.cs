@@ -8,23 +8,29 @@ public class Order: MonoBehaviour {
     #region Public Variables
 
     public List<Item> orderItems = new List<Item>();
+    public List<GameObject> itemPrefabs = new List<GameObject>();
     public int points = 0;
     public float timer = 0f;
     public int orderId = 0;
 
-    public void AddItemToOrder(Item item)
+    public void AddItemToOrder(Item item, GameObject prefabItem, Transform orderLine)
     {
         orderItems.Add(item);
+        itemPrefabs.Add(prefabItem);
+        Instantiate(prefabItem, orderLine, false);
         points += orderManager.pointsPerItem;
     }
 
     public bool RemoveItemFromOrder(Item item)
     {
         Item itemFound = orderItems.Find(orderItem => orderItem.ItemType == item.ItemType);
+        GameObject prefabFound = itemPrefabs.Find(prefab => prefab.tag == item.ItemType.ToString());
 
-        if (itemFound == null) return false;
+        if (itemFound == null || prefabFound == null) return false;
 
         orderItems.Remove(itemFound);
+        Destroy(prefabFound);
+
         return true;
     }
 
