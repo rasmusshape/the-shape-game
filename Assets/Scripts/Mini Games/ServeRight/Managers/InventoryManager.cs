@@ -100,7 +100,6 @@ public class InventoryManager : Singleton<InventoryManager>
         {
             foreach (Transform child in inventory_UI.transform)
             {
-                //GameObject prefabFound = itemPrefabs.Find(prefab => prefab.CompareTag(item.ItemType.ToString()));
                 if (child.CompareTag(itemType.ToString()))
                 {
                     Destroy(child.gameObject);
