@@ -9,7 +9,7 @@ public class DifficultyManager: Singleton<DifficultyManager>
     #region Events
 
     public event Action<int> OnDifficultyLvlChange;
-    
+
     IEnumerator IncreaseDifficulty()
     {
         while(true) 

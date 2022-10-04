@@ -6,7 +6,7 @@ using TMPro;
 public class GameManager : Singleton<GameManager> {
 
     #region Public GameObjects
-
+    
     [SerializeField] TextMeshProUGUI scoreText;
     [Header("Energy")] [SerializeField] Slider energySlider;
 
@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] int maxPlayerEnergy;
     [SerializeField] int energyPointsGained = 1;
     [SerializeField] int energyPointsReduced = -3;
+    [SerializeField] private bool isDebug;
 
     #endregion
 
@@ -98,7 +99,7 @@ public class GameManager : Singleton<GameManager> {
         shapersSpawner.OnOrderDelivered += OnOrderDelivered;
         orderManager.OnOrderExpired += OnOrderExpired;
         
-        AudioManager.Instance.ChangeMusic(AudioManager.MusicType.Hectic);
+        if (!isDebug) AudioManager.Instance.ChangeMusic(AudioManager.MusicType.Hectic);
     }
 
     void OnApplicationQuit()

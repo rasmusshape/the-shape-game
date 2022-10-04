@@ -104,12 +104,21 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
 
             if (shaperPicked.order.orderItems.Count == 0)
             {
-                inactiveShapers.Remove(shaperPicked);
-                activeShapers.Add(shaperPicked);
+                activeShapers.Remove(shaperPicked);
+                inactiveShapers.Add(shaperPicked);
                 OnOrderDelivered(shaperPicked.order.points);
+                ClearOrderLineVisuals(shaperPicked);
                 Destroy(shaperPicked.gameObject.GetComponent<Order>());
                 shaperPicked.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void ClearOrderLineVisuals(Shaper shaperPicked)
+    {
+        foreach (Transform child in shaperPicked.orderLine.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
