@@ -97,6 +97,8 @@ public class GameManager : Singleton<GameManager> {
 
         shapersSpawner.OnOrderDelivered += OnOrderDelivered;
         orderManager.OnOrderExpired += OnOrderExpired;
+        
+        AudioManager.Instance.ChangeMusic(AudioManager.MusicType.Hectic);
     }
 
     void OnApplicationQuit()
