@@ -14,7 +14,7 @@ public class OrderManager : Singleton<OrderManager> {
 
     #region Public Variables
 
-    [Header("Maximum item an order can have")]
+    [Header("Maximum items an order can have")]
     public int maxItemsPrOrder = 3;
 
     [Header("Time to deliver an Item of an Order")]
@@ -36,8 +36,9 @@ public class OrderManager : Singleton<OrderManager> {
 
     #region Private variables
 
-    private int currentMinItemsPrOrder = 1;
-    private int currentMaxItemsPrOrder = 1;
+    [Header("Inspection variables")]
+    [SerializeField] int currentMinItemsPrOrder = 1;
+    [SerializeField] int currentMaxItemsPrOrder = 1;
     private int orderDifficulty = 1;
     private DifficultyManager difficultyManager;
     private List<Item> items;

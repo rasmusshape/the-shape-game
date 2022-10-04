@@ -13,11 +13,11 @@ public class DifficultyManager: Singleton<DifficultyManager>
     IEnumerator IncreaseDifficulty()
     {
         while(true) 
-         { 
+        { 
              difficultyLvl += difficultyInterval;
              OnDifficultyLvlChange(difficultyLvl);
              yield return new WaitForSeconds(timerInterval);
-         }
+        }
     }
 
     #endregion

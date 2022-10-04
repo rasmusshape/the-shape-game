@@ -19,8 +19,11 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
 
     [Header("Time passed to spawn an order")]
     public float timerInterval = 5f;
+    
+    [Header("Interval decrease on each order difficulty increase")]
+    public float intervalDifficultyIncrease = 5f;
 
-    [Header("max shapers allowed to order. Max 8")]
+    [Header("Max shapers allowed to order. Max 8")]
     public int maxShapers = 1;
 
     [Header("After how many difficulty lvls the number of max shapers starts increasing")]
@@ -77,6 +80,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
             if (currentDifficulty >= shapersDiffficulty * shapersDifficultyInterval)
             {
                 shapersDiffficulty++;
+                timerInterval -= intervalDifficultyIncrease;
                 maxShapers++;
             }
         }
@@ -91,14 +95,14 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
         Shaper shaperPicked = findPickedShaper(shaperId);
         if (shaperPicked.order != null)
         {
-
-            foreach (Item item in inventoryManager.items)
+            List<Item> currentItems = new List<Item>(inventoryManager.items);
+            for (int i = currentItems.Count; i > 0; i--)
             {
-                bool result = shaperPicked.order.RemoveItemFromOrder(item);
+                // TODO Fix bug where item seems to be in inventory but isnt actually. (probably inventorymanager)
+                bool result = shaperPicked.order.RemoveItemFromOrder(currentItems[i-1]);
                 if (result)
                 {
-                    OnItemDelivered(item.ItemType);
-                    break;
+                    OnItemDelivered(currentItems[i-1].ItemType);
                 }
             }
 

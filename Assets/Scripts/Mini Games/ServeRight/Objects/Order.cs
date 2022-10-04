@@ -16,8 +16,7 @@ public class Order: MonoBehaviour {
     public void AddItemToOrder(Item item, GameObject prefabItem, Transform orderLine)
     {
         orderItems.Add(item);
-        itemPrefabs.Add(prefabItem);
-        Instantiate(prefabItem, orderLine, false);
+        itemPrefabs.Add(Instantiate(prefabItem, orderLine, false));
         points += orderManager.pointsPerItem;
     }
 
@@ -29,6 +28,7 @@ public class Order: MonoBehaviour {
         if (itemFound == null || prefabFound == null) return false;
 
         orderItems.Remove(itemFound);
+        itemPrefabs.Remove(prefabFound);
         Destroy(prefabFound);
 
         return true;
