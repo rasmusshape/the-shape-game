@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6476997635764490751}
   m_Layer: 5
   m_Name: UI_Pickup_Burger
-  m_TagString: Untagged
+  m_TagString: Burger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -89,10 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491f3f4ae942d41838394aaac6b3eeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burgerGOPrefab: {fileID: 4169104065793701903, guid: 1d887a5b82ae44457ab9720013a9aa7f, type: 3}
+  beerGOPrefab: {fileID: 4169104065793701903, guid: 129fd3772887140e7a6d178a73a51f79, type: 3}
   maxItemsPrOrder: 3
-  timeToDeliverItem: 5
+  timeToDeliverItem: 10
   pointsPerItem: 10
   orderDifficultyInterval: 10
+  startBubbleColor: {r: 0, g: 1, b: 0, a: 1}
+  expiredBubbleColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1338627293949657562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerImages: {fileID: 0}
-  burgerPrefab: {fileID: 6730617031676262690, guid: 4d0f52d489d3b49038e29e0a9fc18aec, type: 3}
+  burgerPrefab: {fileID: 4825170192551293785, guid: 91559f30738d84283b26ecedf5829ea3, type: 3}
   timerInterval: 2
   maxBurgers: 3
 --- !u!114 &1338627293949657564
@@ -138,6 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beerImages: {fileID: 0}
-  beerPrefab: {fileID: 3851407120407030355, guid: 636f5f8cc0b43412ca1e0e724bf29827, type: 3}
+  beerPrefab: {fileID: 4825170192551293785, guid: f53e2526aca52438e9c3aaee6f45b67f, type: 3}
   timerInterval: 2
   maxBeers: 3

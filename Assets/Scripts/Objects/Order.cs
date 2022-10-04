@@ -24,7 +24,7 @@ public class Order: MonoBehaviour {
     public bool RemoveItemFromOrder(Item item)
     {
         Item itemFound = orderItems.Find(orderItem => orderItem.ItemType == item.ItemType);
-        GameObject prefabFound = itemPrefabs.Find(prefab => prefab.tag == item.ItemType.ToString());
+        GameObject prefabFound = itemPrefabs.Find(prefab => prefab.CompareTag(item.ItemType.ToString()));
 
         if (itemFound == null || prefabFound == null) return false;
 

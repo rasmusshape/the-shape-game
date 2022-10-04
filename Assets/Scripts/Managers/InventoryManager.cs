@@ -24,7 +24,7 @@ public class InventoryManager : Singleton<InventoryManager>
     private bool AddItemToInventory(ItemType type)
     {
         Item item;
-        if (type == ItemType.Beer)
+        if (type == ItemType.Burger)
             item = new Item(ItemType.Burger);
         else item = new Item(ItemType.Beer);
 
@@ -39,7 +39,7 @@ public class InventoryManager : Singleton<InventoryManager>
     public void ClearInventory()
     {
         items.Clear();
-        foreach (Transform item in transform) GameObject.Destroy(item.gameObject);
+        foreach (Transform item in inventory_UI.transform) GameObject.Destroy(item.gameObject);
     }
 
     #endregion
@@ -64,7 +64,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void AddBurgerToUI()
     {
-        Instantiate(beerPrefab).transform.SetParent(inventory_UI.transform);
+        Instantiate(burgerPrefab).transform.SetParent(inventory_UI.transform);
     }
 
     #endregion
@@ -98,16 +98,16 @@ public class InventoryManager : Singleton<InventoryManager>
 
         if (childCount > 0)
         {
-            Item[] activeItemsInUI = transform.GetComponentsInChildren<Item>();
-
-            foreach (Transform child in transform)
+            foreach (Transform child in inventory_UI.transform)
             {
-                if (child.GetComponent<Item>().ItemType == itemType)
+                //GameObject prefabFound = itemPrefabs.Find(prefab => prefab.CompareTag(item.ItemType.ToString()));
+                if (child.CompareTag(itemType.ToString()))
                 {
                     Destroy(child.gameObject);
                     return;
                 }
             }
+            
         }
     }
 

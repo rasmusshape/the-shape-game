@@ -117,7 +117,7 @@ public class OrderManager : Singleton<OrderManager> {
 
     private GameObject GetItemPrefab(Item item)
     {
-        if (item.itemType == ItemType.Burger)
+        if (item.ItemType == ItemType.Burger)
             return burgerGOPrefab;
         else
             return beerGOPrefab;

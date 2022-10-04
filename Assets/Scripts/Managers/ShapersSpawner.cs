@@ -95,7 +95,11 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
             foreach (Item item in inventoryManager.items)
             {
                 bool result = shaperPicked.order.RemoveItemFromOrder(item);
-                if (result) OnItemDelivered(item.itemType);
+                if (result)
+                {
+                    OnItemDelivered(item.ItemType);
+                    break;
+                }
             }
 
             if (shaperPicked.order.orderItems.Count == 0)
@@ -122,11 +126,24 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
         }
         return result;
     }
-
+    
     #endregion
-
+    
+    #region Order Expired Event
+    
+    public void OnOrderExpired(int orderId)
+    {
+        // find the shaper with the orderid and deactivate.
+        var shaper = activeShapers.Find(aShaper => aShaper.order.orderId == orderId);
+        shaper.gameObject.SetActive(false);
+    }
+    
     #endregion
-
+    
+    #endregion
+    
+    
+    
     #region  Unity Monobehaviour 
 
     protected ShapersSpawner() { }
@@ -140,6 +157,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
 
         difficultyManager.OnDifficultyLvlChange += OnDifficultyIncreased;
         playerController.OnShaperHit += OnShaperHit;
+        orderManager.OnOrderExpired += OnOrderExpired;
 
         StartCoroutine(SpawnOrder());
     }

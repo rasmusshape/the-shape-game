@@ -43,6 +43,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
     [Header("Absolute Movement Settings")]
     [SerializeField] float absDeadzoneBuffer = 1f;
     [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float maxMoveSpeed = 40f;
 
     // Relative
     [Header("Relative Movement Settings")]
@@ -107,9 +108,16 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
         transform.localPosition = topCenterCoord;
     }
 
-    // Note: In order to activate absolute movement, need to use fixedupdate. 
-    // Also need to clamp position to stay within borders
-    private void Update() 
+    private void Update()
+    {
+        // Limit movement to border of x + y here
+        transform.position = new Vector2(
+            Mathf.Clamp (transform.position.x, -2, 2), 
+            Mathf.Clamp(transform.position.y, -3.75f, 3.5f) 
+        );
+    }
+
+    private void FixedUpdate() 
     {
         switch (movementType) 
         {
@@ -306,14 +314,13 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
         if (!transform.localPosition.Equals(targetPosition) && canChangePositions) {
             transform.localPosition = targetPosition;
             StartCoroutine(StartPositionChangeCooldown());
-            OnPlayerMove.Invoke(true);
         }
     }
 
     void UpdateWithAbsoluteMovement() 
     {
-        dirX = Input.acceleration.x * moveSpeed;
-        dirY = (Input.acceleration.y + verticalTiltOffset) * moveSpeed;
+        dirX = Math.Clamp(Input.acceleration.x * moveSpeed, -maxMoveSpeed, maxMoveSpeed);
+        dirY = Math.Clamp((Input.acceleration.y + verticalTiltOffset) * moveSpeed, -maxMoveSpeed, maxMoveSpeed);
 
         if (dirY > -absDeadzoneBuffer && dirY < absDeadzoneBuffer) dirY = 0;
         if (dirX > -absDeadzoneBuffer && dirX < absDeadzoneBuffer) dirX = 0;

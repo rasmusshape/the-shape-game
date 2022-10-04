@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 546789982161560516}
   m_Layer: 5
   m_Name: UI_Pickup_Beer
-  m_TagString: Untagged
+  m_TagString: Beer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
