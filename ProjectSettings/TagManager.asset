@@ -10,6 +10,8 @@ TagManager:
   - TrashDump
   - BurgerBooth
   - Obstacle
+  - Burger
+  - Beer
   layers:
   - Default
   - TransparentFX
