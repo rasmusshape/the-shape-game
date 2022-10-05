@@ -32,21 +32,23 @@ public class GameManager : Singleton<GameManager> {
 
     #region Events
 
-    private event Action<bool> OnGameOver;
+    public event Action<bool> OnGameOver;
 
     void UpdatePlayerEnergy(int points)
     {
         //TODO: Reduce energy based on order's points
-
         if (points > 0 && currentEnergy == maxPlayerEnergy) return;
 
         currentEnergy += points;
-
+        
         energySlider.value = currentEnergy;   
         
-
-        //TODO: Check for game over and trigger event OnGameOver(true)
-        if (currentEnergy == 0) OnGameOver(true);
+        if (currentEnergy <= 0)
+        {
+            OnGameOver(true);
+            FindObjectOfType<AudioManager>().ChangeMusic(AudioManager.MusicType.Menu);
+            FindObjectOfType<SceneTransition>().LoadScene(SceneTransition.SceneIndexType.GameOver);
+        }
     }
 
     #endregion
@@ -87,6 +89,7 @@ public class GameManager : Singleton<GameManager> {
 
     void Awake() {
         energySlider.maxValue = maxPlayerEnergy;
+        energySlider.value = maxPlayerEnergy;
         currentEnergy = maxPlayerEnergy;
         playerScore = 0;
         scoreText.text = playerScore.ToString();

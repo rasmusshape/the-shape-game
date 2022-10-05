@@ -5,8 +5,15 @@ public class AudioManager : Singleton<AudioManager>
 {
     #region Music
 
+    [Header("Music")]
     public AudioClip menuTheme;
     public AudioClip hecticArcadeTheme;
+
+    [Header("SFX")] 
+    public AudioClip startGameSFX;
+    public AudioClip clickButtonSFX;
+    public float sfxVolume = 0.5f;
+    
 
     #endregion
 
@@ -18,6 +25,12 @@ public class AudioManager : Singleton<AudioManager>
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
         DontDestroyOnLoad(gameObject);
+        FindObjectOfType<UI_MainMenu>().OnMenuButtonClick += PlayButtonClickSFX;
+    }
+
+    private void Start()
+    {
+        FindObjectOfType<SceneTransition>().OnSceneChange += PlayStartGameSFX;
     }
 
     public void ChangeMusic(MusicType musicType)
@@ -41,5 +54,23 @@ public class AudioManager : Singleton<AudioManager>
     {
         Menu,
         Hectic
+    }
+
+    public void PlayStartGameSFX(bool flag)
+    {
+        AudioSource.PlayClipAtPoint(
+            startGameSFX,
+            Camera.main.transform.position,
+            sfxVolume
+        );
+    }
+    
+    public void PlayButtonClickSFX(bool flag)
+    {
+        AudioSource.PlayClipAtPoint(
+            clickButtonSFX,
+            Camera.main.transform.position,
+            sfxVolume
+        );
     }
 }

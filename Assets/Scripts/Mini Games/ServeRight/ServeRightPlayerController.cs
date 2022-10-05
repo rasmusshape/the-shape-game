@@ -71,6 +71,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
     public event Action<int> OnShaperHit;
 
     protected ServeRightPlayerController() { }
+    private bool playerCanMove = true;
      
     private void Start() 
     {
@@ -109,6 +110,8 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
         };
 
         transform.localPosition = topCenterCoord;
+
+        GameManager.Instance.OnGameOver += OnGameOver;
     }
 
     private void Update()
@@ -122,18 +125,23 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
 
     private void FixedUpdate() 
     {
-        switch (movementType) 
+        if (playerCanMove)
         {
-            case MovementType.Relative:
-                UpdateWithRelativeMovement();
-                break;
-            case MovementType.Absolute:
-                UpdateWithAbsoluteMovement();
-                break;
-            default:
-                UpdateWithSnappingMovement();
-                break;
+            switch (movementType) 
+            {
+                case MovementType.Relative:
+                    UpdateWithRelativeMovement();
+                    break;
+                case MovementType.Absolute:
+                    UpdateWithAbsoluteMovement();
+                    break;
+                default:
+                    UpdateWithSnappingMovement();
+                    break;
+            }
+            
         }
+        
     }
 
     
@@ -383,6 +391,11 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
             transform.localPosition = Vector2.Lerp(transform.localPosition, targetPosition, Time.deltaTime * updateSpeed);
         }
 
+    }
+
+    public void OnGameOver(bool flag)
+    {
+        playerCanMove = false;
     }
 
     private enum xCoordType {

@@ -10,6 +10,7 @@ public class ServeRightSFXManager : MonoBehaviour
     public AudioClip orderCompletedSFX;
     public AudioClip orderExpiredSFX;
     public AudioClip playShaperSpawnedSFX;
+    public AudioClip gameOverSFX;
 
     [Header("Audio Settings")] 
     public float sfxVolume = 1;
@@ -37,6 +38,7 @@ public class ServeRightSFXManager : MonoBehaviour
         shaperSpawner.OnItemDelivered += PlayItemDeliveredSFX;
         shaperSpawner.OnOrderDelivered += PlayOrderCompletedSFX;
         shaperSpawner.OnOrderSpawned += PlayShaperSpawnedSFX;
+        GameManager.Instance.OnGameOver += PlayGameOverSFX;
 
     }
 
@@ -64,6 +66,11 @@ public class ServeRightSFXManager : MonoBehaviour
     private void PlayShaperSpawnedSFX(int orderId, Shaper shaper)
     {
         PlaySFX(playShaperSpawnedSFX);
+    }
+    
+    private void PlayGameOverSFX(bool flag)
+    {
+        PlaySFX(gameOverSFX);
     }
     #endregion
 
