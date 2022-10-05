@@ -2630,11 +2630,11 @@ MonoBehaviour:
   scoreText: {fileID: 131126298}
   energySlider: {fileID: 1029810683}
   playerScore: 0
-  currentEnergy: 10
-  maxPlayerEnergy: 10
-  energyPointsGained: 1
-  energyPointsReduced: -3
-  isDebug: 1
+  currentEnergy: 100
+  maxPlayerEnergy: 100
+  energyPointsGained: 5
+  energyPointsReduced: -30
+  isDebug: 0
 --- !u!114 &1397507631 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1338627293949657562, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
@@ -3854,6 +3854,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: maxShapers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
       propertyPath: inactiveShapers.Array.data[0]
       value: 
       objectReference: {fileID: 6048998373929282755}
@@ -3901,6 +3905,38 @@ PrefabInstance:
       propertyPath: beerImages
       value: 
       objectReference: {fileID: 976657527}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: startBubbleColor.b
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: startBubbleColor.g
+      value: 0.75294125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: startBubbleColor.r
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: expiredBubbleColor.b
+      value: 0.17254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: expiredBubbleColor.g
+      value: 0.21568629
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: expiredBubbleColor.r
+      value: 0.9058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: currentMaxItemsPrOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
+      propertyPath: orderDifficultyInterval
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
 --- !u!1001 &5731088612345940778
