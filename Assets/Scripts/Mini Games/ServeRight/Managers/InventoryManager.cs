@@ -102,12 +102,12 @@ public class InventoryManager : Singleton<InventoryManager>
 
         if (childCount > 0)
         {
-            
             foreach (Transform child in inventory_UI.transform)
             {
                 if (child.CompareTag(itemType.ToString()))
                 {
                     Debug.Log("Destroying item in UI");
+                    child.transform.parent = null;
                     Destroy(child.gameObject);
                     break;
                 }
