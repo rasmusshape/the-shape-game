@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
 {
@@ -64,7 +65,9 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
     const string shaperTag = "Shaper";
 
     public event Action<bool> OnBeerBoothHit;
+    public event Action<bool> OnBeerBoothExit;
     public event Action<bool> OnBurgerBoothHit;
+    public event Action<bool> OnBurgerBoothExit;
     public event Action<int> OnShaperHit;
 
     protected ServeRightPlayerController() { }
@@ -171,6 +174,20 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
         }
     }
     
+    void OnTriggerExit2D(Collider2D other)
+    {
+        switch (other.gameObject.tag) {
+            case beerBoothTag:
+                OnBeerBoothExit(true);
+                Debug.Log("BeerBooth Exit");
+                break;
+            case burgerBoothTag:
+                OnBurgerBoothExit(true);
+                Debug.Log("BurgerBooth Exit");
+                break;
+        }
+    }
+
 
     void UpdateWithSnappingMovement()
     {

@@ -20,6 +20,9 @@ public class BeerSpawner: Singleton<BeerSpawner>
    
     [Header("Maximum beers spawned")]
     public int maxBeers = 3;
+    
+    [Header("Pickup interval when hitting booth")] 
+    public float pickupIntervalInSeconds = 0.5f;
 
     #endregion
 
@@ -28,6 +31,7 @@ public class BeerSpawner: Singleton<BeerSpawner>
     private ServeRightPlayerController playerController;
     private InventoryManager inventoryManager;
     private int beersCounter;
+    [SerializeField] private bool isHittingBeerBooth;
     
     #endregion
 
@@ -38,14 +42,14 @@ public class BeerSpawner: Singleton<BeerSpawner>
     IEnumerator SpawnBeer()
     {
         while(true) 
-         { 
+        { 
              if(beersCounter < maxBeers) {
                 beersCounter++;
                 AddBeerToUI();
                 //OnBeerSpawned(true);
              }
              yield return new WaitForSeconds(timerInterval);
-         }
+        }
     }
 
     private void AddBeerToUI()
@@ -66,11 +70,27 @@ public class BeerSpawner: Singleton<BeerSpawner>
     /// </summary>
     public void OnBeerBoothHit(bool isHit)
     {
-        if(AbleToPickUp()) {
-            beersCounter --;
-            RemoveBeerFromUI();
-            OnBeerPickedUp(true);
+        isHittingBeerBooth = true;
+        StartCoroutine(PickupBeer());
+    }
+    
+    private IEnumerator PickupBeer()
+    {
+        while (isHittingBeerBooth)
+        {
+            if (AbleToPickUp()) {
+                beersCounter --;
+                RemoveBeerFromUI();
+                OnBeerPickedUp(true);
+            }
+
+            yield return new WaitForSeconds(pickupIntervalInSeconds);
         }
+    }
+    
+    private void OnBeerBoothExit(bool exit)
+    {
+        isHittingBeerBooth = false;
     }
 
     private bool AbleToPickUp()
@@ -101,6 +121,7 @@ public class BeerSpawner: Singleton<BeerSpawner>
         inventoryManager = InventoryManager.Instance;
         playerController = ServeRightPlayerController.Instance;
         playerController.OnBeerBoothHit += OnBeerBoothHit;
+        playerController.OnBeerBoothExit += OnBeerBoothExit;
 
         StartCoroutine(SpawnBeer());
     }

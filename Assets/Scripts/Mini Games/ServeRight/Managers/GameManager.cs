@@ -74,6 +74,7 @@ public class GameManager : Singleton<GameManager> {
     public void OnOrderExpired(int points)
     {
         UpdatePlayerEnergy(energyPointsReduced);
+        // Donkey
     }
 
     #endregion

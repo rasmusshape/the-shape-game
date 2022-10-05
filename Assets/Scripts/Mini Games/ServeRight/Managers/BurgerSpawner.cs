@@ -21,6 +21,9 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     [Header("Maximum burgers spawned")]
     public int maxBurgers = 3;
 
+    [Header("Pickup interval when hitting booth")] 
+    public float pickupIntervalInSeconds = 0.5f;
+
     #endregion
 
     #region Private Variables
@@ -28,6 +31,7 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     private ServeRightPlayerController playerController;
     private InventoryManager inventoryManager;
     private int burgersCounter;
+    [SerializeField] private bool isHittingBurgerBooth;
 
     #endregion
 
@@ -38,14 +42,14 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     IEnumerator SpawnBurger()
     {
         while(true) 
-         {
+        {
             if (burgersCounter < maxBurgers) {
                 burgersCounter++;
                 AddBurgerToUI();
                 //OnBurgerSpawned(true);
-             }
-             yield return new WaitForSeconds(timerInterval);
-         }
+            }
+            yield return new WaitForSeconds(timerInterval);
+        }
     }
 
     private void AddBurgerToUI()
@@ -66,11 +70,27 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
     /// </summary>
     public void OnBurgerBoothHit(bool _)
     {
-        if(AbleToPickUp()) {
-            burgersCounter --;
-            RemoveBurgerFromUI();
-            OnBurgerPickedUp(true);
+        isHittingBurgerBooth = true;
+        StartCoroutine(PickUpBurger());
+    }
+
+    private IEnumerator PickUpBurger()
+    {
+        while (isHittingBurgerBooth)
+        {
+            if (AbleToPickUp()) {
+                burgersCounter --;
+                RemoveBurgerFromUI();
+                OnBurgerPickedUp(true);
+            }
+
+            yield return new WaitForSeconds(pickupIntervalInSeconds);
         }
+    }
+
+    private void OnBurgerBoothExit(bool exit)
+    {
+        isHittingBurgerBooth = false;
     }
 
     private bool AbleToPickUp()
@@ -102,7 +122,8 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
         playerController = ServeRightPlayerController.Instance;
 
         playerController.OnBurgerBoothHit += OnBurgerBoothHit;
-
+        playerController.OnBurgerBoothExit += OnBurgerBoothExit;
+        
         StartCoroutine(SpawnBurger());
     }
 

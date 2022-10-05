@@ -1663,11 +1663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544490646}
   m_CullTransparentMesh: 1
---- !u!1 &599472773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1338627293949657561, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-  m_PrefabInstance: {fileID: 1338627293425316120}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &632022749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6370898679780727643, guid: d69fa27201a7a427c8bdeb2bc8363970, type: 3}
@@ -2645,31 +2640,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1338627293949657562, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
   m_PrefabInstance: {fileID: 1338627293425316120}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599472773}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef61f2aad64a342f891063206a387fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1397507638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599472773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6133c0907aac468aadab88275ed354ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPickedUpSFX: {fileID: 8300000, guid: e981991dd5b8e474d8ab8dcc8e98820c, type: 3}
-  itemDeliveredSFX: {fileID: 8300000, guid: 2eeb0b07f3cd14e638b32bc7d89777cf, type: 3}
-  orderCompletedSFX: {fileID: 8300000, guid: ebae29e089d1c498baacb14c450fd66c, type: 3}
-  orderExpiredSFX: {fileID: 8300000, guid: 93e9b91ffd9054cf38291df9bb7d78f9, type: 3}
-  playShaperSpawnedSFX: {fileID: 8300000, guid: 0998d11ad175043ccb38a2acdbfbe08b, type: 3}
-  sfxVolume: 1
-  isAudioEnabled: 1
 --- !u!1 &1519129492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3878,18 +3854,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: timerInterval
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: shapersDifficultyInterval
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: intervalDifficultyIncrease
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
       propertyPath: inactiveShapers.Array.data[0]
       value: 
       objectReference: {fileID: 6048998373929282755}
@@ -3925,10 +3889,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657561, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 1338627293949657562, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
       propertyPath: inventory_UI
       value: 
@@ -3937,42 +3897,10 @@ PrefabInstance:
       propertyPath: burgerImages
       value: 
       objectReference: {fileID: 249848495}
-    - target: {fileID: 1338627293949657563, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: timerInterval
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1338627293949657564, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
       propertyPath: beerImages
       value: 
       objectReference: {fileID: 976657527}
-    - target: {fileID: 1338627293949657564, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: timerInterval
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: maxItemsPrOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: currentMaxItemsPrOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657565, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: orderDifficultyInterval
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657567, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: difficultyLvl
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657567, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: timerInterval
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657567, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: difficultyInterval
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
 --- !u!1001 &5731088612345940778

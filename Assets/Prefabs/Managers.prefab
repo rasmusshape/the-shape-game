@@ -15,12 +15,13 @@ GameObject:
   - component: {fileID: 1338627293949657562}
   - component: {fileID: 1338627293949657563}
   - component: {fileID: 1338627293949657564}
+  - component: {fileID: 1397507638}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1338627293949657552
 Transform:
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyLvl: 0
-  timerInterval: 5
+  timerInterval: 10
   difficultyInterval: 1
 --- !u!114 &1338627293949657553
 MonoBehaviour:
@@ -75,8 +76,9 @@ MonoBehaviour:
   - {fileID: 0}
   activeShapers: []
   timerInterval: 5
+  intervalDifficultyIncrease: 0.25
   maxShapers: 1
-  shapersDifficultyInterval: 10
+  shapersDifficultyInterval: 4
 --- !u!114 &1338627293949657565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,9 +96,11 @@ MonoBehaviour:
   maxItemsPrOrder: 3
   timeToDeliverItem: 10
   pointsPerItem: 10
-  orderDifficultyInterval: 10
+  orderDifficultyInterval: 5
   startBubbleColor: {r: 0, g: 1, b: 0, a: 1}
   expiredBubbleColor: {r: 1, g: 0, b: 0, a: 1}
+  currentMinItemsPrOrder: 1
+  currentMaxItemsPrOrder: 3
 --- !u!114 &1338627293949657562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +117,7 @@ MonoBehaviour:
   burgerPrefab: {fileID: 6730617031676262690, guid: 4d0f52d489d3b49038e29e0a9fc18aec, type: 3}
   beerPrefab: {fileID: 3851407120407030355, guid: 636f5f8cc0b43412ca1e0e724bf29827, type: 3}
   maxInventoryCount: 3
+  items: []
 --- !u!114 &1338627293949657563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +132,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burgerImages: {fileID: 0}
   burgerPrefab: {fileID: 4825170192551293785, guid: 91559f30738d84283b26ecedf5829ea3, type: 3}
-  timerInterval: 2
+  timerInterval: 3
   maxBurgers: 3
+  pickupIntervalInSeconds: 0.5
+  isHittingBurgerBooth: 0
 --- !u!114 &1338627293949657564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,5 +150,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beerImages: {fileID: 0}
   beerPrefab: {fileID: 4825170192551293785, guid: f53e2526aca52438e9c3aaee6f45b67f, type: 3}
-  timerInterval: 2
+  timerInterval: 3
   maxBeers: 3
+  pickupIntervalInSeconds: 0.5
+  isHittingBeerBooth: 0
+--- !u!114 &1397507638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338627293949657561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6133c0907aac468aadab88275ed354ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPickedUpSFX: {fileID: 8300000, guid: e981991dd5b8e474d8ab8dcc8e98820c, type: 3}
+  itemDeliveredSFX: {fileID: 8300000, guid: 2eeb0b07f3cd14e638b32bc7d89777cf, type: 3}
+  orderCompletedSFX: {fileID: 8300000, guid: ebae29e089d1c498baacb14c450fd66c, type: 3}
+  orderExpiredSFX: {fileID: 8300000, guid: 93e9b91ffd9054cf38291df9bb7d78f9, type: 3}
+  playShaperSpawnedSFX: {fileID: 8300000, guid: 0998d11ad175043ccb38a2acdbfbe08b, type: 3}
+  sfxVolume: 1
+  isAudioEnabled: 1

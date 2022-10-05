@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
@@ -18,7 +19,7 @@ public class InventoryManager : Singleton<InventoryManager>
     public int maxInventoryCount = 3;
 
     [Header("current items in the inventory")]
-    public List<Item> items = new List<Item>();
+    public List<Item> items;
 
     // Add item to list if max inventory has not been hit.
     private bool AddItemToInventory(ItemType type)
@@ -90,24 +91,85 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         RemoveItemFromInventory(itemType);
         RemoveItemFromUI(itemType);
+        Debug.Log("Inventory size " + items.Count);
+        Debug.Log("UI inventory count: " + inventory_UI.transform.childCount);
     }
 
+    // Child count not going down.
     public void RemoveItemFromUI(ItemType itemType)
     {
         int childCount = inventory_UI.transform.childCount;
 
         if (childCount > 0)
         {
+            
             foreach (Transform child in inventory_UI.transform)
             {
                 if (child.CompareTag(itemType.ToString()))
                 {
+                    Debug.Log("Destroying item in UI");
                     Destroy(child.gameObject);
-                    return;
+                    break;
                 }
             }
-            
         }
+    }
+
+    private void CleanUpInventory()
+    {
+        int beersInInventory = 0;
+        int burgersInInventory = 0;
+        
+        items.ForEach(item =>
+        {
+            switch (item.ItemType)
+            {
+                case ItemType.Beer:
+                    beersInInventory++;
+                    break;
+                case ItemType.Burger:
+                    burgersInInventory++;
+                    break;
+            }
+        });
+
+        int beersInUI = 0;
+        int burgersInUI = 0;
+        
+        foreach (Transform child in inventory_UI.transform)
+        {
+            switch (child.tag)
+            {
+                case "Beer":
+                    beersInUI++;
+                    break;
+                case "Burger":
+                    burgersInUI++;
+                    break;
+            }
+        }
+
+        if (beersInUI == beersInInventory && burgersInUI == burgersInInventory) return;
+        
+        foreach (Transform child in inventory_UI.transform)
+        {
+            if (beersInUI > beersInInventory)
+            {
+                if (child.tag.Equals("Beer")) Destroy(child.gameObject);
+            } else if (beersInUI < beersInInventory)
+            {
+                AddBeerToUI();
+            }
+
+            if (burgersInUI > burgersInInventory)
+            {
+                if (child.tag.Equals("Burger")) Destroy(child.gameObject);
+            } else if (burgersInUI < burgersInInventory)
+            {
+                AddBurgerToUI();
+            }
+        }
+        
     }
 
     // Finds the first item in inventory of given type and removes it.
@@ -136,6 +198,8 @@ public class InventoryManager : Singleton<InventoryManager>
         beerSpawner.OnBeerPickedUp += OnBeerPickedUp;
         burgerSpawner.OnBurgerPickedUp += OnBurgerPickedUp;
         shapersSpawner.OnItemDelivered += OnItemDelivered;
+
+        items = new List<Item>();
     }
 
     void OnApplicationQuit()

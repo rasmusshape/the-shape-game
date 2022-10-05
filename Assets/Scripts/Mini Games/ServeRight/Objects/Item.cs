@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Item {
     public ItemType ItemType;
 
@@ -9,6 +11,7 @@ public class Item {
 
 }
 
+[Serializable]
 public enum ItemType {
     Burger,
     Beer,

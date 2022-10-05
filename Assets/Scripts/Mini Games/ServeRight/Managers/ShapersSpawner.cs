@@ -95,14 +95,18 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
         Shaper shaperPicked = findPickedShaper(shaperId);
         if (shaperPicked.order != null)
         {
-            List<Item> currentItems = new List<Item>(inventoryManager.items);
-            for (int i = currentItems.Count; i > 0; i--)
+            List<Item> currentItems = new System.Collections.Generic.List<Item>();
+            foreach (var item in inventoryManager.items)
             {
-                // TODO Fix bug where item seems to be in inventory but isnt actually. (probably inventorymanager)
-                bool result = shaperPicked.order.RemoveItemFromOrder(currentItems[i-1]);
+                currentItems.Add(new Item(item.ItemType));    
+            }
+            
+            foreach (var item in currentItems)
+            {
+                bool result = shaperPicked.order.RemoveItemFromOrder(item);
                 if (result)
                 {
-                    OnItemDelivered(currentItems[i-1].ItemType);
+                    OnItemDelivered(item.ItemType);
                 }
             }
 
@@ -146,8 +150,10 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
     
     public void OnOrderExpired(int orderId)
     {
-        // find the shaper with the orderid and deactivate.
         var shaper = activeShapers.Find(aShaper => aShaper.order.orderId == orderId);
+        inactiveShapers.Add(shaper);
+        activeShapers.Remove(shaper);
+        ClearOrderLineVisuals(shaper);
         shaper.gameObject.SetActive(false);
     }
     
