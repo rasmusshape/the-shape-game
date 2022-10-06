@@ -75,10 +75,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   activeShapers: []
-  timerInterval: 5
+  timerInterval: 4
   intervalDifficultyIncrease: 0.25
-  maxShapers: 1
-  shapersDifficultyInterval: 4
+  maxShapers: 2
+  shapersDifficultyInterval: 3
 --- !u!114 &1338627293949657565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,11 +96,11 @@ MonoBehaviour:
   maxItemsPrOrder: 3
   timeToDeliverItem: 10
   pointsPerItem: 10
-  orderDifficultyInterval: 5
-  startBubbleColor: {r: 0, g: 1, b: 0, a: 1}
-  expiredBubbleColor: {r: 1, g: 0, b: 0, a: 1}
+  orderDifficultyInterval: 3
+  startBubbleColor: {r: 0.6392157, g: 0.75294125, b: 0.30588236, a: 1}
+  expiredBubbleColor: {r: 0.9058824, g: 0.21568629, b: 0.17254902, a: 1}
   currentMinItemsPrOrder: 1
-  currentMaxItemsPrOrder: 3
+  currentMaxItemsPrOrder: 1
 --- !u!114 &1338627293949657562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,5 +171,6 @@ MonoBehaviour:
   orderCompletedSFX: {fileID: 8300000, guid: ebae29e089d1c498baacb14c450fd66c, type: 3}
   orderExpiredSFX: {fileID: 8300000, guid: 93e9b91ffd9054cf38291df9bb7d78f9, type: 3}
   playShaperSpawnedSFX: {fileID: 8300000, guid: 0998d11ad175043ccb38a2acdbfbe08b, type: 3}
+  gameOverSFX: {fileID: 8300000, guid: dbdd354b511aa4300a4e88edc96b8b50, type: 3}
   sfxVolume: 1
   isAudioEnabled: 1

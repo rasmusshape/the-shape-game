@@ -19,6 +19,7 @@ public class UI_MainMenu : MonoBehaviour {
     public void NewGame() {
         sfxManager.PlayButtonClickSFX(true);
         sfxManager.PlayStartGameSFX(true);
+        GameManager.Instance.NewGame();
         sceneTransition.LoadScene(SceneTransition.SceneIndexType.ServeRight);
     }
 

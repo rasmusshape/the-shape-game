@@ -46,6 +46,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
     public event Action<int> OnOrderDelivered;
     public event Action<ItemType> OnItemDelivered;
     public event Action<int, Shaper> OnOrderSpawned;
+    public event Action<bool> OnMaxShapers;
 
     IEnumerator SpawnOrder()
     {
@@ -75,13 +76,20 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
 
     public void OnDifficultyIncreased(int currentDifficulty)
     {
-        if (maxShapers < 8)
+        if (currentDifficulty >= shapersDiffficulty * shapersDifficultyInterval)
         {
-            if (currentDifficulty >= shapersDiffficulty * shapersDifficultyInterval)
+            if (maxShapers < 8) 
             {
                 shapersDiffficulty++;
-                timerInterval -= intervalDifficultyIncrease;
                 maxShapers++;
+            }
+            else
+            {
+                if (timerInterval > 0.5f)
+                {
+                    timerInterval -= intervalDifficultyIncrease;
+                    OnMaxShapers.Invoke(true);
+                }    
             }
         }
     }

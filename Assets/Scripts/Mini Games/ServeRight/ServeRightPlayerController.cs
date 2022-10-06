@@ -111,7 +111,7 @@ public class ServeRightPlayerController : Singleton<ServeRightPlayerController>
 
         transform.localPosition = topCenterCoord;
 
-        GameManager.Instance.OnGameOver += OnGameOver;
+        ServeRightGameManager.Instance.OnGameOver += OnGameOver;
     }
 
     private void Update()

@@ -17,6 +17,7 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
 
     [Header("Time to spawn a burger")]
     public float timerInterval = 2f; 
+    public float timerReductionInterval = 0.25f;
    
     [Header("Maximum burgers spawned")]
     public int maxBurgers = 3;
@@ -124,7 +125,13 @@ public class BurgerSpawner: Singleton<BurgerSpawner>
         playerController.OnBurgerBoothHit += OnBurgerBoothHit;
         playerController.OnBurgerBoothExit += OnBurgerBoothExit;
         
+        ShapersSpawner.Instance.OnMaxShapers += IncreaseSpawnRate;
         StartCoroutine(SpawnBurger());
+    }
+    
+    public void IncreaseSpawnRate(bool flag)
+    {
+        if (timerInterval > 0.5f) timerInterval -= timerReductionInterval;
     }
 
     void OnApplicationQuit()

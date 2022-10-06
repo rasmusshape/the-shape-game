@@ -16,7 +16,8 @@ public class BeerSpawner: Singleton<BeerSpawner>
     #region Public Variables
 
     [Header("Time to spawn a beer")]
-    public float timerInterval = 2f; 
+    public float timerInterval = 2f;
+    public float timerReductionInterval = 0.25f;
    
     [Header("Maximum beers spawned")]
     public int maxBeers = 3;
@@ -123,7 +124,13 @@ public class BeerSpawner: Singleton<BeerSpawner>
         playerController.OnBeerBoothHit += OnBeerBoothHit;
         playerController.OnBeerBoothExit += OnBeerBoothExit;
 
+        ShapersSpawner.Instance.OnMaxShapers += IncreaseSpawnRate;
         StartCoroutine(SpawnBeer());
+    }
+
+    public void IncreaseSpawnRate(bool flag)
+    {
+        if (timerInterval > 0.5f) timerInterval -= timerReductionInterval;
     }
 
     void OnApplicationQuit()

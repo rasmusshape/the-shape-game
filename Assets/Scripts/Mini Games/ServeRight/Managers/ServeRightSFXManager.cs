@@ -38,7 +38,7 @@ public class ServeRightSFXManager : MonoBehaviour
         shaperSpawner.OnItemDelivered += PlayItemDeliveredSFX;
         shaperSpawner.OnOrderDelivered += PlayOrderCompletedSFX;
         shaperSpawner.OnOrderSpawned += PlayShaperSpawnedSFX;
-        GameManager.Instance.OnGameOver += PlayGameOverSFX;
+        ServeRightGameManager.Instance.OnGameOver += PlayGameOverSFX;
 
     }
 

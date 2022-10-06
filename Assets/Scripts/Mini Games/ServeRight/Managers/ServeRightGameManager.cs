@@ -3,7 +3,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : Singleton<GameManager> {
+public class ServeRightGameManager : Singleton<ServeRightGameManager> {
 
     #region Public GameObjects
     
@@ -45,6 +45,7 @@ public class GameManager : Singleton<GameManager> {
         
         if (currentEnergy <= 0)
         {
+            GameManager.Instance.playerScore = this.playerScore;
             OnGameOver(true);
             FindObjectOfType<MusicPlayer>().ChangeMusic(MusicPlayer.MusicType.Menu);
             FindObjectOfType<SceneTransition>().LoadScene(SceneTransition.SceneIndexType.GameOver);
@@ -85,7 +86,7 @@ public class GameManager : Singleton<GameManager> {
 
     #region  Unity Monobehaviour 
 
-    protected GameManager() { }
+    protected ServeRightGameManager() { }
 
     void Awake() {
         energySlider.maxValue = maxPlayerEnergy;
