@@ -14,6 +14,7 @@ public class UI_Leaderboard : MonoBehaviour
     {
         sceneTransition = FindObjectOfType<SceneTransition>();
         sfxManager = MenuSFXManager.Instance;
+        StartCoroutine(SendToCornerOnDelay());
     }
 
     public void GotoMainMenu() {
@@ -23,7 +24,7 @@ public class UI_Leaderboard : MonoBehaviour
     
     IEnumerator SendToCornerOnDelay()
     {
-        yield return new WaitForSeconds(1);
-        logoAnimator.Play("ZoomToCorner");
+        yield return new WaitForSeconds(1.5f);
+        logoAnimator.SetTrigger("ZoomToCorner");
     }
 }
