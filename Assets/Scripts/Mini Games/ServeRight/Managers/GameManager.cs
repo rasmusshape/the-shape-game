@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager> {
         if (currentEnergy <= 0)
         {
             OnGameOver(true);
-            FindObjectOfType<AudioManager>().ChangeMusic(AudioManager.MusicType.Menu);
+            FindObjectOfType<MusicPlayer>().ChangeMusic(MusicPlayer.MusicType.Menu);
             FindObjectOfType<SceneTransition>().LoadScene(SceneTransition.SceneIndexType.GameOver);
         }
     }
@@ -103,7 +103,7 @@ public class GameManager : Singleton<GameManager> {
         shapersSpawner.OnOrderDelivered += OnOrderDelivered;
         orderManager.OnOrderExpired += OnOrderExpired;
         
-        if (!isDebug) AudioManager.Instance.ChangeMusic(AudioManager.MusicType.Hectic);
+        if (!isDebug) MusicPlayer.Instance.ChangeMusic(MusicPlayer.MusicType.Hectic);
     }
 
     void OnApplicationQuit()

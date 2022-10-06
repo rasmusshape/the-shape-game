@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,18 +6,21 @@ using UnityEngine;
 public class UI_Leaderboard : MonoBehaviour
 {
     [SerializeField] private Animator logoAnimator;
-    // Start is called before the first frame update
-    void Start()
+
+    private SceneTransition sceneTransition;
+    private MenuSFXManager sfxManager;
+    
+    private void Start()
     {
-        StartCoroutine(SendToCornerOnDelay());
+        sceneTransition = FindObjectOfType<SceneTransition>();
+        sfxManager = MenuSFXManager.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void GotoMainMenu() {
+        sfxManager.PlayButtonClickSFX(true);
+        sceneTransition.LoadScene(SceneTransition.SceneIndexType.MainMenu);
     }
-
+    
     IEnumerator SendToCornerOnDelay()
     {
         yield return new WaitForSeconds(1);

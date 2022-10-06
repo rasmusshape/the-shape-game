@@ -8,21 +8,22 @@ public class UI_MainMenu : MonoBehaviour {
     [SerializeField] GameObject mainMenuCanvas;
 
     private SceneTransition sceneTransition;
-
-    public event Action<bool> OnMenuButtonClick;
-
+    private MenuSFXManager sfxManager;
+    
     private void Start()
     {
         sceneTransition = FindObjectOfType<SceneTransition>();
+        sfxManager = MenuSFXManager.Instance;
     }
 
     public void NewGame() {
-        OnMenuButtonClick.Invoke(true);
+        sfxManager.PlayButtonClickSFX(true);
+        sfxManager.PlayStartGameSFX(true);
         sceneTransition.LoadScene(SceneTransition.SceneIndexType.ServeRight);
     }
 
     public void ToggleLeaderboard(bool state) {
-        OnMenuButtonClick.Invoke(true);
+        sfxManager.PlayButtonClickSFX(true);
         leaderboardCanvas.SetActive(state);
         mainMenuCanvas.SetActive(!state);
     }
