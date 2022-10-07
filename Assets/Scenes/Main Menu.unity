@@ -2253,6 +2253,10 @@ PrefabInstance:
       value: Leaderboard Controller
       objectReference: {fileID: 0}
     - target: {fileID: 669390789360843431, guid: 916f356835aac414097a0398792f99a7, type: 3}
+      propertyPath: maxScores
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 669390789360843431, guid: 916f356835aac414097a0398792f99a7, type: 3}
       propertyPath: leaderboardUI
       value: 
       objectReference: {fileID: 1751470143}

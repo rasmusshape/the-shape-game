@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9085303493530804017
 Transform:
   m_ObjectHideFlags: 0
@@ -47,9 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuTheme: {fileID: 8300000, guid: fe0d6ff75bb554e68a41f1e3db37fb74, type: 3}
   hecticArcadeTheme: {fileID: 8300000, guid: ef916dfb1e9454ee1ae8fd5dbffeeadf, type: 3}
-  startGameSFX: {fileID: 8300000, guid: 73abde8720dca419f81cbf9eddc7ef6e, type: 3}
-  clickButtonSFX: {fileID: 8300000, guid: 287c61da06ae94511aff86d0189d169d, type: 3}
-  sfxVolume: 0.5
 --- !u!82 &9085303493530804019
 AudioSource:
   m_ObjectHideFlags: 0

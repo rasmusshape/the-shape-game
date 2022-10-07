@@ -80,18 +80,24 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
         {
             if (maxShapers < 8) 
             {
-                shapersDiffficulty++;
                 maxShapers++;
             }
             else
             {
-                if (timerInterval > 0.5f)
-                {
-                    shapersDiffficulty++;
-                    timerInterval -= intervalDifficultyIncrease;
-                    OnMaxShapers.Invoke(true);
-                }    
+                OnMaxShapers.Invoke(true);
             }
+            
+            if (timerInterval > 0.5f)
+            {
+                timerInterval -= intervalDifficultyIncrease;
+                
+            }
+            else
+            {
+                timerInterval = 0.5f;
+            }
+            
+            shapersDiffficulty++;
         }
     }
 

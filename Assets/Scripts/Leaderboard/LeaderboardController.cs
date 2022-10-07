@@ -12,8 +12,7 @@ public class LeaderboardController : MonoBehaviour
     public int maxScores = 9;
     public GameObject leaderboardUI;
     public GameObject scoreLinePrefab;
-    public GameObject submitButton;
-
+    
     private GameManager gameManager;
 
     private void Start()
@@ -36,41 +35,20 @@ public class LeaderboardController : MonoBehaviour
                 Destroy(textFields[1].gameObject);
                         
                 scoreLine.transform.SetParent(leaderboardUI.transform);
-                
-                if (submitButton != null) submitButton.SetActive(false);
             }
         });
     }
 
     public void SubmitScore()
     {
-        MenuSFXManager.Instance.PlayButtonClickSFX(true);
-        if (MemberID.text.Length == 0) return;
-
         LootLockerSDKManager.SubmitScore(
-            ValidateInput(MemberID.text), gameManager.playerScore, ID, (response) =>
-        { });
-        
-        ClearScores();
-        ShowScores();
-
-        submitButton.SetActive(false);
-    }
-
-    private string ValidateInput(string input)
-    {
-        var diff = 6 - input.Length;
-
-        if (diff > 0)
-        {
-            for (int i = diff; i > 0; i--)
+                MemberID.text, gameManager.playerScore, ID, (response) =>
             {
-                input += " ";
-            }
-        }
-
-        return input;
+                ClearScores();
+                ShowScores();
+            });
     }
+    
 
     public void ShowScores()
     {

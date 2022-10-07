@@ -76,9 +76,9 @@ MonoBehaviour:
   - {fileID: 0}
   activeShapers: []
   timerInterval: 4
-  intervalDifficultyIncrease: 0.2
+  intervalDifficultyIncrease: 0.15
   maxShapers: 2
-  shapersDifficultyInterval: 3
+  shapersDifficultyInterval: 2
 --- !u!114 &1338627293949657565
 MonoBehaviour:
   m_ObjectHideFlags: 0

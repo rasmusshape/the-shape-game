@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberID: {fileID: 0}
   ID: 7646
-  maxScores: 10
+  maxScores: 9
   leaderboardUI: {fileID: 0}
   scoreLinePrefab: {fileID: 7807849136693015586, guid: 66df53ab2d745463ea6a441560301897, type: 3}
-  submitButton: {fileID: 0}
