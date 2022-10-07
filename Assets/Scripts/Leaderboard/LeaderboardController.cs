@@ -36,6 +36,8 @@ public class LeaderboardController : MonoBehaviour
     public void SubmitScore()
     {
         MenuSFXManager.Instance.PlayButtonClickSFX(true);
+        if (MemberID.text.Length == 0) return;
+
         LootLockerSDKManager.SubmitScore(
             ValidateInput(MemberID.text), gameManager.playerScore, ID, (response) =>
         { });
@@ -49,7 +51,7 @@ public class LeaderboardController : MonoBehaviour
     private string ValidateInput(string input)
     {
         var diff = 6 - input.Length;
-        
+
         if (diff > 0)
         {
             for (int i = diff; i > 0; i--)
@@ -84,6 +86,15 @@ public class LeaderboardController : MonoBehaviour
             else
             {
                 Debug.Log("Failed to fetch high-scores: " + response.Error);
+                GameObject scoreLine = Instantiate(scoreLinePrefab);
+                TextMeshProUGUI[] textFields = scoreLine.GetComponentsInChildren<TextMeshProUGUI>();
+                textFields[0].text = "Connect to the internet for leaderboards";
+                Destroy(textFields[1].gameObject);
+                        
+                scoreLine.transform.SetParent(leaderboardUI.transform);
+                
+                if (submitButton != null) submitButton.SetActive(false);
+                
             }
         });
     }
