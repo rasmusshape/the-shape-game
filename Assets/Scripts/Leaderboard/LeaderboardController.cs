@@ -9,7 +9,7 @@ public class LeaderboardController : MonoBehaviour
 {
     public TMP_InputField MemberID;
     public int ID;
-    private int maxScores = 9;
+    public int maxScores = 9;
     public GameObject leaderboardUI;
     public GameObject scoreLinePrefab;
     public GameObject submitButton;
@@ -29,6 +29,15 @@ public class LeaderboardController : MonoBehaviour
             else
             {
                 Debug.Log("Failed to connect to LootLocker: " + response.Error);
+                
+                GameObject scoreLine = Instantiate(scoreLinePrefab);
+                TextMeshProUGUI[] textFields = scoreLine.GetComponentsInChildren<TextMeshProUGUI>();
+                textFields[0].text = "Connect to the internet for leaderboards";
+                Destroy(textFields[1].gameObject);
+                        
+                scoreLine.transform.SetParent(leaderboardUI.transform);
+                
+                if (submitButton != null) submitButton.SetActive(false);
             }
         });
     }
@@ -86,15 +95,6 @@ public class LeaderboardController : MonoBehaviour
             else
             {
                 Debug.Log("Failed to fetch high-scores: " + response.Error);
-                GameObject scoreLine = Instantiate(scoreLinePrefab);
-                TextMeshProUGUI[] textFields = scoreLine.GetComponentsInChildren<TextMeshProUGUI>();
-                textFields[0].text = "Connect to the internet for leaderboards";
-                Destroy(textFields[1].gameObject);
-                        
-                scoreLine.transform.SetParent(leaderboardUI.transform);
-                
-                if (submitButton != null) submitButton.SetActive(false);
-                
             }
         });
     }
