@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.lootlocker.lootlockersdk": {
+      "version": "git@github.com:LootLocker/unity-sdk.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "hash": "e504b7990e6883376c71c4351c85f8e62385d140"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.6",
       "depth": 1,
@@ -210,7 +219,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

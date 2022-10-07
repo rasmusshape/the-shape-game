@@ -3871,10 +3871,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: shapersDifficultyInterval
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1338627293949657553, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
       propertyPath: inactiveShapers.Array.data[0]
       value: 
       objectReference: {fileID: 6048998373929282755}
@@ -3922,10 +3918,6 @@ PrefabInstance:
       propertyPath: beerImages
       value: 
       objectReference: {fileID: 976657527}
-    - target: {fileID: 1338627293949657567, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
-      propertyPath: timerInterval
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c58d3d982375fc48802190250e9b9e5, type: 3}
 --- !u!1001 &5731088612345940778
