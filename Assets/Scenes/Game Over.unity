@@ -2330,6 +2330,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 298528592}
     - target: {fileID: 669390789360843431, guid: 916f356835aac414097a0398792f99a7, type: 3}
+      propertyPath: submitButton
+      value: 
+      objectReference: {fileID: 1185658052}
+    - target: {fileID: 669390789360843431, guid: 916f356835aac414097a0398792f99a7, type: 3}
       propertyPath: leaderboardUI
       value: 
       objectReference: {fileID: 217513534}
