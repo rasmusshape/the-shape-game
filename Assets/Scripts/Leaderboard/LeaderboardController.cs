@@ -12,6 +12,7 @@ public class LeaderboardController : MonoBehaviour
     private int maxScores = 9;
     public GameObject leaderboardUI;
     public GameObject scoreLinePrefab;
+    public GameObject submitButton;
 
     private GameManager gameManager;
 
@@ -34,11 +35,15 @@ public class LeaderboardController : MonoBehaviour
 
     public void SubmitScore()
     {
+        MenuSFXManager.Instance.PlayButtonClickSFX(true);
         LootLockerSDKManager.SubmitScore(
             ValidateInput(MemberID.text), gameManager.playerScore, ID, (response) =>
-        {
-            
-        });
+        { });
+        
+        ClearScores();
+        ShowScores();
+
+        submitButton.SetActive(false);
     }
 
     private string ValidateInput(string input)
@@ -81,5 +86,14 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to fetch high-scores: " + response.Error);
             }
         });
+    }
+
+    public void ClearScores()
+    {
+        foreach (Transform child in leaderboardUI.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
     }
 }

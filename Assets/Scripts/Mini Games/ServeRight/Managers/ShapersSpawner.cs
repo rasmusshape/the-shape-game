@@ -87,6 +87,7 @@ public class ShapersSpawner : Singleton<ShapersSpawner>
             {
                 if (timerInterval > 0.5f)
                 {
+                    shapersDiffficulty++;
                     timerInterval -= intervalDifficultyIncrease;
                     OnMaxShapers.Invoke(true);
                 }    

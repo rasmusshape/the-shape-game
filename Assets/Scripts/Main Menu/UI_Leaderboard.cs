@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ public class UI_Leaderboard : MonoBehaviour
         sfxManager = MenuSFXManager.Instance;
         scoreText.text = GameManager.Instance.playerScore.ToString();
         
-        StartCoroutine(SendToCornerOnDelay());
+        //StartCoroutine(SendToCornerOnDelay());
     }
 
     public void GotoMainMenu() {

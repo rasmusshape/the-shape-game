@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 0}
   activeShapers: []
   timerInterval: 4
-  intervalDifficultyIncrease: 0.25
+  intervalDifficultyIncrease: 0.2
   maxShapers: 2
   shapersDifficultyInterval: 3
 --- !u!114 &1338627293949657565
@@ -133,6 +133,7 @@ MonoBehaviour:
   burgerImages: {fileID: 0}
   burgerPrefab: {fileID: 4825170192551293785, guid: 91559f30738d84283b26ecedf5829ea3, type: 3}
   timerInterval: 3
+  timerReductionInterval: 0.25
   maxBurgers: 3
   pickupIntervalInSeconds: 0.5
   isHittingBurgerBooth: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   beerImages: {fileID: 0}
   beerPrefab: {fileID: 4825170192551293785, guid: f53e2526aca52438e9c3aaee6f45b67f, type: 3}
   timerInterval: 3
+  timerReductionInterval: 0.25
   maxBeers: 3
   pickupIntervalInSeconds: 0.5
   isHittingBeerBooth: 0
